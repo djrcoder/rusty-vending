@@ -1,36 +1,36 @@
-use rand::Rng;
 use std::cmp::Ordering;
 use std::io;
 
 fn main() {
-    println!("Guesss the number between 0 and 100!");
+    // Accept coins to get money from the customer
 
-    let secret_number = rand::thread_rng().gen_range(1, 101);
+    let valid_coins: [i32; 4] = [10, 20, 50, 100];
+
+    // let wallet = unsigned
 
     loop {
-        // println!("The secret number is {} ", secret_number);
+        println!("Input coins. Snacks cost £1");
 
-        println!("Input guess now: ");
-
-        let mut guess = String::new();
+        let mut coin_input = String::new();
 
         io::stdin()
-            .read_line(&mut guess)
+            .read_line(&mut coin_input)
             .expect("Failed to read line.");
 
-        let guess: u32 = match guess.trim().parse() {
+        let coin_input: i32 = match coin_input.trim().parse() {
             Ok(num) => num,
             Err(_) => continue,
         };
 
-        println!("You guessed: {}", guess);
-
-        match guess.cmp(&secret_number) {
-            Ordering::Less => println!("Too small!"),
-            Ordering::Greater => println!("Too big!"),
-            Ordering::Equal => {
-                println!("Winner winner chicken dinner 🐔");
+        for coin in valid_coins.iter() {
+            if coin_input == *coin {
+                println!("valid coin");
+                // Coin is valid, add to wallet
+                // Once wallet is £1 in value, next stage
                 break;
+            } else {
+                println!("invalid coin");
+                // Empty wallet, gibe change, start over
             }
         }
     }
