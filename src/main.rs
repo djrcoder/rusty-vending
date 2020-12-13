@@ -11,6 +11,7 @@ fn main() {
     loop {
         println!("Input coins. Snacks cost £1");
 
+        let mut coin_flag: bool = false;
         let mut coin_input = String::new();
 
         io::stdin()
@@ -25,13 +26,18 @@ fn main() {
         for coin in valid_coins.iter() {
             if coin_input == *coin {
                 println!("valid coin");
+                coin_flag = true;
                 // Coin is valid, add to wallet
                 // Once wallet is £1 in value, next stage
                 break;
-            } else {
-                println!("invalid coin");
-                // Empty wallet, gibe change, start over
             }
+        }
+
+        // if flag is no then print
+
+        if coin_flag == false {
+            println!("invalid coin");
+            // Empty wallet, gibe change, start over
         }
     }
 }
