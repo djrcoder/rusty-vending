@@ -1,7 +1,43 @@
 // use std::cmp::Ordering;
+
 use std::io;
+#[derive(Debug)]
+
+struct ProductToPurchase {
+    name_of_product: String,
+    price_of_product: u32,
+    amount_of_product: u32,
+}
+
+struct VendingMachineContents {
+    product1: ProductToPurchase,
+    product2: ProductToPurchase,
+}
 
 fn main() {
+    let crisps = ProductToPurchase {
+        name_of_product: String::from("Ready Salted Crisps"),
+        price_of_product: 100,
+        amount_of_product: 10,
+    };
+
+    let drink = ProductToPurchase {
+        name_of_product: String::from("Fanta"),
+        price_of_product: 100,
+        amount_of_product: 10,
+    };
+
+    let stocked_vending_machine = VendingMachineContents {
+        product1: crisps,
+        product2: drink,
+    };
+
+    println!(
+        "Contents is: {:#?} and {:#?}",
+        stocked_vending_machine.product1.name_of_product,
+        stocked_vending_machine.product2.name_of_product
+    );
+
     // Accept coins to get money from the customer
 
     let valid_coins: [i32; 4] = [10, 20, 50, 100];
