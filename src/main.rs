@@ -123,8 +123,9 @@ fn main() {
         // if flag is no then print
 
         if valid_coin_flag == false {
-            println!("invalid coin");
+            println!("invalid coin! Returning coins.");
             // Empty wallet, gibe change, start over
+            total_input = 0;
         }
     }
 }
