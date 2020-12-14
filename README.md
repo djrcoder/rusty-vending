@@ -1,17 +1,33 @@
-# rusty-vending
+# ⚙️🍫 Rusty Vending Machine ⚙️🍫
+
+Simple vending machine project used to explore and learn Rust. Runs in the terminal.
+
+## To run    🏃‍♀️
 
 
 
-To compile ---> rustc main.rs
+Clone the repo
 
-To run ---> ./main
+Install rust as per [Rust](https://www.rust-lang.org/tools/install)
+
+Navigate to root.
+
+To compile:
+
+```Cargo build```
+
+then...
+
+```Cargo run```
 
 
-To add Cargo to an existing directory ---> Cargo init
 
-Root of directory ---> Cargo build
-                       Cargo check
+## Resources 📚
 
-Another neat feature of Cargo is that you can run the cargo doc --open command, which will build documentation provided by all of your dependencies locally and open it in your browser. 
 
+
+https://doc.rust-lang.org/cargo/
 https://doc.rust-lang.org/book/ch01-03-hello-cargo.html
+https://hashrust.com/blog/references-in-rust/
+https://doc.rust-lang.org/std/primitive.i32.html
+https://stackoverflow.com/questions/29414171/whats-the-rust-way-to-modify-a-structure-within-nested-loops
