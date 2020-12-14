@@ -5,8 +5,9 @@ use std::io;
 
 struct ProductToPurchase {
     name_of_product: String,
-    price_of_product: u32,
-    amount_of_product: u32,
+    selection_code: u32,
+    price_of_product: i32,
+    amount_of_product: i32,
 }
 
 struct VendingMachineContents {
@@ -17,26 +18,20 @@ struct VendingMachineContents {
 fn main() {
     let crisps = ProductToPurchase {
         name_of_product: String::from("Ready Salted Crisps"),
+        selection_code: 1,
         price_of_product: 100,
         amount_of_product: 10,
     };
-
     let drink = ProductToPurchase {
         name_of_product: String::from("Fanta"),
+        selection_code: 2,
         price_of_product: 100,
         amount_of_product: 10,
     };
-
-    let stocked_vending_machine = VendingMachineContents {
+    let mut stocked_vending_machine = VendingMachineContents {
         product1: crisps,
         product2: drink,
     };
-
-    println!(
-        "Contents is: {:#?} and {:#?}",
-        stocked_vending_machine.product1.name_of_product,
-        stocked_vending_machine.product2.name_of_product
-    );
 
     // Accept coins to get money from the customer
 
@@ -46,7 +41,7 @@ fn main() {
     // let wallet = unsigned
 
     loop {
-        println!("Input coins. Snacks cost £1");
+        println!("Input coins. Snacks cost 100 tokens");
 
         let mut valid_coin_flag: bool = false;
         let mut user_coin_input = String::new();
@@ -71,7 +66,56 @@ fn main() {
                 total_input += coin;
 
                 println!("Total amount is {}", total_input);
-                // Once wallet is £1 in value, next stage
+                // Once wallet is 100 in value, next stage
+                if user_coin_input >= 100 {
+                    // makeSelection(user_coin_input, stocked_vending_machine);
+                    println!(
+                        "Products available: Press {:#?} for {:#?}. Price {:#?}  and Press {:#?} for {:#?}. Price {:#?}",
+                        stocked_vending_machine.product1.selection_code,
+                        stocked_vending_machine.product1.name_of_product,
+                        stocked_vending_machine.product1.price_of_product,
+                        stocked_vending_machine.product2.selection_code,
+                        stocked_vending_machine.product2.name_of_product,
+                        stocked_vending_machine.product2.price_of_product,
+                    );
+
+                    println!("Make a selection");
+                    let mut user_product_selection = String::new();
+
+                    io::stdin()
+                        .read_line(&mut user_product_selection)
+                        .expect("Failed to read line.");
+
+                    let user_product_selection: u32 = match user_product_selection.trim().parse() {
+                        Ok(num) => num,
+                        Err(_) => continue,
+                    };
+
+                    // loop
+                    // if selection matches vending machine code
+                    // dispense and wipe money
+
+                    // for selection_code in stocked_vending_machine.product1.iter() {
+
+                    if user_product_selection == stocked_vending_machine.product1.selection_code {
+                        println!(
+                            "Enjoy your {:#?} ",
+                            stocked_vending_machine.product1.name_of_product
+                        );
+                        total_input -= stocked_vending_machine.product1.price_of_product;
+                        stocked_vending_machine.product1.amount_of_product -= 1;
+                    }
+
+                    if user_product_selection == stocked_vending_machine.product2.selection_code {
+                        println!(
+                            "Enjoy your {:#?} ",
+                            stocked_vending_machine.product2.name_of_product
+                        );
+                        total_input -= stocked_vending_machine.product2.price_of_product;
+                        stocked_vending_machine.product2.amount_of_product -= 1;
+                    }
+                }
+
                 break;
             }
         }
